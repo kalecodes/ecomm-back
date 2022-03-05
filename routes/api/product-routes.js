@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { reset } = require('nodemon');
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
@@ -13,19 +12,33 @@ router.get('/', (req, res) => {
       'id',
       'product_name',
       'price',
-      'stock'
+      'stock',
+      'category_id'
     ],
-    // do I need to include id below?
+  //   // do I need to include id below?
     include: [
       {
         model: Category,
-        attributes: ['id', 'category_name']
+        attributes: ['id','category_name']
       },
       {
         model: Tag,
-        attributes: ['id', 'tag_name']
+        attributes: ['id', 'tag_name'],
+        include: [
+          {
+            model: ProductTag,
+            attributes: ['id', 'product_id', 'tag_id']
+          }
+        ],
+        // through: ProductTag,
+        as: 'tagged_product'
       }
     ]
+  })
+  .then(dbPostData => res.json(dbPostData))
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err)
   })
 });
 
@@ -108,7 +121,7 @@ router.put('/:id', (req, res) => {
   Product.update(req.body, {
     where: {
       id: req.params.id,
-    },
+    }
   })
     .then((product) => {
       // find all associated tags from ProductTag
