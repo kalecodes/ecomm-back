@@ -54,11 +54,12 @@ router.get('/:id', (req, res) => {
     include: [
       {
         model: Category,
-        attributes: ['category_name']
+        attributes: ['id', 'category_name']
       },
       {
         model: Tag,
-        attributes: ['tag_name']
+        attributes: ['id', 'tag_name'],
+        as: 'tagged_product'
       }
     ]
   })
@@ -82,7 +83,8 @@ router.post('/', (req, res) => {
       product_name: "Basketball",
       price: 200.00,
       stock: 3,
-      tagIds: [1, 2, 3, 4]
+      tagIds: [1, 2, 3, 4],
+      category_id: 6
     }
   */
   // Does this need to be defined? See just-tech-news post-routes post
