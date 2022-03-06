@@ -16,19 +16,19 @@ Back-end for an E-commerce site
 
   ## Video Demo
   https://drive.google.com/file/d/16fIOICXN2dMj1JyLtgUkRt5pCWG5CGrw/view
-  
+
   
   ## Installation
-  Install this applicatioin by cloning our repository from github to your device.
-  Run 'npm install' in the command line to install dependencies
-  Create a .env file with your database name, mysql username, and mysql password
+  * Install this applicatioin by cloning our repository from github to your device.
+  * Run 'npm install' in the command line to install dependencies
+  * Create a .env file with your database name, mysql username, and mysql password
 
   ## Usage
-  Start mysql in the command line
-  Input SOURCE db/schema.sql to create the database
-  Exit mysql
-  Input 'npm run seed' to seed the database
-  Input 'npm start' to start the server
+  * Start mysql in the command line
+  * Input SOURCE db/schema.sql to create the database
+  * Exit mysql
+  * Input 'npm run seed' to seed the database
+  * Input 'npm start' to start the server
 
   ## License
   None
